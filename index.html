@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mz Digital - Undangan Digital Tema Papercraft</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome untuk Ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Caveat (Handwriting) dan Quicksand (Rounded Sans untuk keterbacaan) -->
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        paper: '#FDFBF7',     // Warna dasar kertas
+                        kraft: '#D4C3A3',     // Warna kertas coklat
+                        dark: '#2D2A26',      // Hitam keabu-abuan untuk outline
+                        primary: '#D97757',   // Terakota/Bata untuk aksen
+                        secondary: '#739E82', // Hijau sage
+                        accent: '#E8B258',    // Kuning mustard
+                    },
+                    fontFamily: {
+                        sans: ['Quicksand', 'sans-serif'],
+                        hand: ['Caveat', 'cursive'],
+                    },
+                    boxShadow: {
+                        // Bayangan tajam khas papercraft
+                        'paper': '6px 6px 0px 0px rgba(45, 42, 38, 1)',
+                        'paper-sm': '3px 3px 0px 0px rgba(45, 42, 38, 1)',
+                        'paper-hover': '2px 2px 0px 0px rgba(45, 42, 38, 1)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Tekstur Kertas Lembut untuk Background */
+        body {
+            background-color: #FDFBF7;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='a'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23a)' opacity='0.06'/%3E%3C/svg%3E");
+            color: #2D2A26;
+        }
+
+        .paper-border {
+            border: 2px solid #2D2A26;
+        }
+
+        .paper-border-dashed {
+            border: 2px dashed #2D2A26;
+        }
+
+        /* Ornamen Selotip (Washi Tape) */
+        .washi-tape {
+            position: absolute;
+            height: 25px;
+            width: 100px;
+            background-color: rgba(232, 178, 88, 0.7); /* Kuning transparan */
+            backdrop-filter: blur(2px);
+            top: -10px;
+            left: 50%;
+            margin-left: -50px;
+            z-index: 10;
+            border-top: 1px dashed rgba(45, 42, 38, 0.3);
+            border-bottom: 1px dashed rgba(45, 42, 38, 0.3);
+            transform: rotate(-3deg);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+        
+        .washi-tape.pink {
+            background-color: rgba(217, 119, 87, 0.6);
+            transform: rotate(2deg);
+            top: 15px; left: -10px; margin-left: 0; width: 80px;
+        }
+
+        .washi-tape.green {
+            background-color: rgba(115, 158, 130, 0.6);
+            transform: rotate(-4deg);
+            top: -10px; right: 20px; left: auto;
+        }
+
+        /* Pin Kertas */
+        .paper-pin {
+            position: absolute;
+            width: 16px; height: 16px;
+            background-color: #D97757;
+            border-radius: 50%;
+            top: 10px; left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 2px 2px 4px rgba(0,0,0,0.4), inset -2px -2px 4px rgba(0,0,0,0.2);
+            z-index: 10;
+        }
+        .paper-pin::after {
+            content: ''; position: absolute;
+            width: 4px; height: 4px;
+            background-color: rgba(255,255,255,0.6);
+            border-radius: 50%;
+            top: 3px; left: 3px;
+        }
+
+        /* Animasi Kertas Melayang */
+        .float-anim {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(1deg); }
+            50% { transform: translateY(-15px) rotate(-1deg); }
+            100% { transform: translateY(0px) rotate(1deg); }
+        }
+
+        /* Bentuk Zig-Zag untuk pembatas seksi */
+        .zigzag-bottom {
+            background: linear-gradient(135deg, #FDFBF7 25%, transparent 25%) -20px 0,
+                        linear-gradient(225deg, #FDFBF7 25%, transparent 25%) -20px 0,
+                        linear-gradient(315deg, #FDFBF7 25%, transparent 25%),
+                        linear-gradient(45deg, #FDFBF7 25%, transparent 25%);
+            background-size: 40px 40px;
+            background-color: #D4C3A3;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased selection:bg-primary selection:text-white">
+
+    <!-- Navigasi -->
+    <nav class="fixed w-full z-50 transition-all duration-300 bg-paper paper-border shadow-paper-sm top-0" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center relative">
+                    <div class="washi-tape pink" style="width: 50px; top: -5px; left: -15px;"></div>
+                    <a href="#" class="font-hand text-4xl font-bold text-dark transform -rotate-2 inline-block relative z-10">
+                        Mz<span class="text-primary">Digital</span>
+                    </a>
+                </div>
+                <!-- Menu Desktop -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#home" class="text-dark hover:text-primary font-bold transition">Beranda</a>
+                    <a href="#tema-basic" class="text-dark hover:text-primary font-bold transition">Koleksi Basic</a>
+                    <a href="#tema-3d" class="text-dark hover:text-primary font-bold transition">3D Motion</a>
+                    <a href="#fitur" class="text-dark hover:text-primary font-bold transition">Fitur</a>
+                    <a href="#kontak" class="bg-primary text-white px-6 py-2 paper-border shadow-paper-sm hover:shadow-paper-hover hover:translate-y-1 font-bold transition transform -rotate-1">Pesan Sekarang</a>
+                </div>
+                <!-- Tombol Mobile -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-dark hover:text-primary focus:outline-none p-2 paper-border bg-white shadow-paper-sm">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Menu Mobile -->
+        <div id="mobile-menu" class="hidden md:hidden bg-paper border-t-2 border-dark">
+            <div class="px-4 pt-4 pb-6 space-y-3">
+                <a href="#home" class="block text-dark font-bold hover:text-primary paper-border-dashed p-2">Beranda</a>
+                <a href="#tema-basic" class="block text-dark font-bold hover:text-primary paper-border-dashed p-2">Koleksi Basic</a>
+                <a href="#tema-3d" class="block text-dark font-bold hover:text-primary paper-border-dashed p-2">3D Motion</a>
+                <a href="#fitur" class="block text-dark font-bold hover:text-primary paper-border-dashed p-2">Fitur</a>
+                <a href="#kontak" class="block bg-primary text-white text-center font-bold p-3 paper-border shadow-paper-sm mt-4">Pesan Sekarang</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <!-- Teks Hero -->
+                <div class="w-full lg:w-1/2 text-center lg:text-left relative">
+                    <div class="absolute -top-10 -left-10 text-accent opacity-30 text-8xl font-hand"><i class="fas fa-heart"></i></div>
+                    
+                    <div class="inline-block bg-accent px-4 py-1 paper-border shadow-paper-sm transform -rotate-2 mb-6">
+                        <span class="text-dark font-bold tracking-widest uppercase text-sm">Undangan Digital Kreatif</span>
+                    </div>
+                    
+                    <h1 class="text-5xl sm:text-6xl lg:text-7xl font-hand font-bold text-dark leading-tight mb-6 relative z-10">
+                        Rangkai Cerita <br>
+                        <span class="text-primary transform inline-block rotate-2">Cinta Anda</span> <br>
+                        Dalam Karya Seni
+                    </h1>
+                    
+                    <p class="text-lg text-gray-700 mb-10 font-medium max-w-lg mx-auto lg:mx-0 relative z-10">
+                        Undangan digital dengan sentuhan personal layaknya buku *scrapbook* dan kerajinan kertas. Unik, estetik, dan berkesan untuk tamu Anda.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-5 relative z-10">
+                        <a href="#tema-basic" class="bg-secondary text-white px-8 py-3 paper-border shadow-paper hover:shadow-paper-hover hover:translate-y-1 font-bold text-lg transition text-center flex items-center justify-center transform hover:-rotate-1">
+                            Lihat Koleksi <i class="fas fa-arrow-down ml-2"></i>
+                        </a>
+                        <a href="#kontak" class="bg-paper text-dark px-8 py-3 paper-border shadow-paper hover:shadow-paper-hover hover:translate-y-1 font-bold text-lg transition text-center flex items-center justify-center transform hover:rotate-1">
+                            Hubungi Kami
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Ilustrasi Scrapbook Kanan -->
+                <div class="w-full lg:w-1/2 relative mt-10 lg:mt-0 float-anim">
+                    <div class="washi-tape pink" style="top: -20px; left: 30%; transform: rotate(5deg); z-index: 20;"></div>
+                    <div class="washi-tape" style="bottom: -10px; right: 20%; top: auto; transform: rotate(-5deg); z-index: 20;"></div>
+                    
+                    <!-- Kertas Tumpuk -->
+                    <div class="relative bg-white p-4 paper-border shadow-paper transform rotate-3">
+                        <div class="paper-border-dashed p-2 h-80 sm:h-96 bg-kraft flex items-center justify-center relative overflow-hidden">
+                            <!-- Pola kertas di dalam frame -->
+                            <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(#2D2A26 2px, transparent 2px); background-size: 20px 20px;"></div>
+                            
+                            <!-- Foto Ilustrasi (Placeholder) -->
+                            <div class="bg-white paper-border p-2 shadow-paper-sm transform -rotate-6 w-3/4 h-3/4 relative z-10 flex flex-col">
+                                <div class="paper-pin"></div>
+                                <img src="https://placehold.co/400x300/D97757/ffffff?text=Pasangan+Bahagia" alt="Ilustrasi Pasangan" class="w-full h-full object-cover paper-border mb-2">
+                                <span class="font-hand text-center text-2xl font-bold text-dark mt-auto">Save the Date!</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Hiasan Kertas melayang -->
+                    <div class="absolute -right-5 top-1/4 bg-accent paper-border p-3 shadow-paper-sm transform rotate-12 z-0 hidden md:block">
+                        <i class="fas fa-camera-retro text-4xl text-dark"></i>
+                    </div>
+                    <div class="absolute -left-8 bottom-1/4 bg-white paper-border p-3 shadow-paper-sm transform -rotate-12 rounded-full z-20">
+                        <i class="fas fa-envelope-open-text text-3xl text-primary"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Koleksi Basic -->
+    <section id="tema-basic" class="py-24 bg-kraft relative border-y-4 border-dark">
+        <!-- Dekorasi Selotip sudut -->
+        <div class="washi-tape" style="top: -10px; left: 10%;"></div>
+        <div class="washi-tape pink" style="bottom: -10px; right: 10%; top: auto;"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 relative">
+                <div class="inline-block relative">
+                    <h2 class="text-5xl md:text-6xl font-hand font-bold text-dark bg-paper px-8 py-2 paper-border shadow-paper-sm transform -rotate-1 z-10 relative">
+                        Koleksi <span class="text-primary">Basic</span>
+                    </h2>
+                    <div class="washi-tape green" style="top: -15px; right: -20px;"></div>
+                </div>
+                <p class="text-dark font-medium max-w-2xl mx-auto mt-8 bg-white p-4 paper-border shadow-paper-sm transform rotate-1">
+                    Desain manis dan simpel ala buku catatan. Cocok untuk Anda yang suka kesederhanaan estetik.
+                </p>
+            </div>
+
+            <!-- Kontainer Kartu Basic -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8" id="basic-themes-container">
+                <!-- Data Tema Basic akan di-render oleh JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Koleksi 3D Motion -->
+    <section id="tema-3d" class="py-24 bg-paper relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 relative">
+                <div class="inline-block relative">
+                    <div class="absolute -top-8 -left-8 bg-accent text-dark font-bold px-4 py-1 paper-border shadow-paper-sm transform -rotate-6 z-20 text-sm">
+                        EKSKLUSIF!
+                    </div>
+                    <h2 class="text-5xl md:text-6xl font-hand font-bold text-dark bg-white px-8 py-2 paper-border shadow-paper transform rotate-1 z-10 relative">
+                        3D Motion <span class="text-secondary">Islamic</span>
+                    </h2>
+                </div>
+                <p class="text-dark font-medium max-w-2xl mx-auto mt-8 paper-border-dashed p-4 relative">
+                    Animasi pergerakan ala *pop-up book* (buku timbul) dengan sentuhan nilai Islami yang elegan dan berkelas.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 justify-center" id="motion-themes-container">
+                <!-- Data Tema Motion akan di-render oleh JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Fitur -->
+    <section id="fitur" class="py-24 bg-dark text-paper relative">
+        <!-- Pinggiran kertas robek dari CSS -->
+        <div class="absolute top-0 left-0 w-full h-4 bg-paper" style="clip-path: polygon(0% 0%, 5% 100%, 10% 0%, 15% 100%, 20% 0%, 25% 100%, 30% 0%, 35% 100%, 40% 0%, 45% 100%, 50% 0%, 55% 100%, 60% 0%, 65% 100%, 70% 0%, 75% 100%, 80% 0%, 85% 100%, 90% 0%, 95% 100%, 100% 0%);"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl md:text-6xl font-hand font-bold text-accent mb-4">Fitur Spesial</h2>
+                <p class="text-paper/80 font-medium">Bukan sekadar gambar, undangan ini hidup dengan berbagai fitur canggih.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Note 1 -->
+                <div class="bg-accent text-dark p-6 paper-border shadow-paper transform -rotate-2 hover:rotate-0 transition duration-300 relative">
+                    <div class="paper-pin" style="background-color: #2D2A26;"></div>
+                    <i class="fas fa-mobile-alt text-4xl mb-4 mt-2"></i>
+                    <h3 class="font-bold text-2xl mb-2 font-hand">Super Responsif</h3>
+                    <p class="font-medium text-sm">Desain menyesuaikan layar HP, tablet, maupun komputer. Nyaman dibaca di mana saja.</p>
+                </div>
+                <!-- Note 2 -->
+                <div class="bg-paper text-dark p-6 paper-border shadow-paper transform rotate-1 hover:-rotate-1 transition duration-300 relative">
+                    <div class="washi-tape pink"></div>
+                    <i class="fas fa-music text-4xl text-primary mb-4 mt-2"></i>
+                    <h3 class="font-bold text-2xl mb-2 font-hand">Lagu Autoplay</h3>
+                    <p class="font-medium text-sm">Iringi momen membacakan undangan dengan lagu favorit pilihan Anda.</p>
+                </div>
+                <!-- Note 3 -->
+                <div class="bg-secondary text-white p-6 paper-border shadow-paper transform -rotate-1 hover:rotate-1 transition duration-300 relative">
+                    <div class="paper-pin" style="background-color: #D97757;"></div>
+                    <i class="fas fa-map-marked-alt text-4xl mb-4 mt-2"></i>
+                    <h3 class="font-bold text-2xl mb-2 font-hand">Peta Terintegrasi</h3>
+                    <p class="font-medium text-sm">Satu klik langsung terhubung ke Google Maps untuk memudahkan tamu hadir.</p>
+                </div>
+                <!-- Note 4 -->
+                <div class="bg-paper text-dark p-6 paper-border shadow-paper transform rotate-2 hover:-rotate-1 transition duration-300 relative">
+                    <div class="washi-tape green"></div>
+                    <i class="fas fa-envelope-open-text text-4xl text-secondary mb-4 mt-2"></i>
+                    <h3 class="font-bold text-2xl mb-2 font-hand">Buku Tamu Digital</h3>
+                    <p class="font-medium text-sm">Tamu bisa menulis doa dan konfirmasi kehadiran (RSVP) langsung di undangan.</p>
+                </div>
+                <!-- Note 5 -->
+                <div class="bg-primary text-white p-6 paper-border shadow-paper transform -rotate-1 hover:rotate-0 transition duration-300 relative">
+                    <div class="paper-pin" style="background-color: #2D2A26;"></div>
+                    <i class="fas fa-hourglass-half text-4xl mb-4 mt-2"></i>
+                    <h3 class="font-bold text-2xl mb-2 font-hand">Hitung Mundur</h3>
+                    <p class="font-medium text-sm">Timer cantik yang menghitung detik demi detik menuju hari bahagia Anda.</p>
+                </div>
+                <!-- Note 6 -->
+                <div class="bg-accent text-dark p-6 paper-border shadow-paper transform rotate-1 hover:-rotate-1 transition duration-300 relative">
+                    <div class="washi-tape" style="background-color: rgba(255,255,255,0.7);"></div>
+                    <i class="fas fa-share-alt text-4xl mb-4 mt-2"></i>
+                    <h3 class="font-bold text-2xl mb-2 font-hand">Sebar Tanpa Batas</h3>
+                    <p class="font-medium text-sm">Cukup satu link, sebarkan ke ribuan tamu via WhatsApp atau sosmed.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kontak CTA -->
+    <section id="kontak" class="py-24 bg-kraft relative border-t-4 border-dark">
+        <div class="washi-tape green" style="top: -10px; left: 50%;"></div>
+        
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 bg-white p-10 paper-border shadow-paper transform -rotate-1">
+            <div class="paper-pin" style="top: 15px; left: 15px; transform: none;"></div>
+            <div class="paper-pin" style="top: 15px; right: 15px; left: auto; transform: none;"></div>
+            <div class="paper-pin" style="bottom: 15px; left: 15px; top: auto; transform: none;"></div>
+            <div class="paper-pin" style="bottom: 15px; right: 15px; left: auto; top: auto; transform: none;"></div>
+            
+            <i class="far fa-envelope text-6xl text-primary mb-6"></i>
+            <h2 class="text-4xl md:text-5xl font-hand font-bold text-dark mb-4">Siap Mengukir Kenangan?</h2>
+            <p class="text-dark font-medium text-lg mb-8 paper-border-dashed p-4 inline-block">
+                Mari diskusikan konsep undangan impian Anda. Chat kami sekarang juga!
+            </p>
+            
+            <div class="flex justify-center mt-4">
+                <button onclick="hubungiWhatsApp()" class="bg-[#25D366] text-white px-8 py-4 paper-border shadow-paper hover:shadow-paper-hover hover:translate-y-1 font-bold text-xl transition flex items-center justify-center transform rotate-1">
+                    <i class="fab fa-whatsapp text-3xl mr-3"></i> Pesan via WhatsApp
+                </button>
+            </div>
+            <p class="mt-6 text-sm text-gray-600 font-medium">Nomor resmi kami: 0852-5167-5143</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-paper py-12 border-t-4 border-dark border-dashed">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0 text-center md:text-left">
+                    <a href="#" class="font-hand text-4xl font-bold text-paper transform -rotate-2 inline-block">
+                        Mz<span class="text-primary">Digital</span>
+                    </a>
+                    <p class="text-sm font-medium mt-2">Kerajinan Digital untuk Momen Spesial Anda.</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="https://www.instagram.com/muzanni.uce" class="bg-white text-dark w-10 h-10 flex items-center justify-center paper-border shadow-paper-sm transform rotate-3 hover:-rotate-3 transition">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@berbagifaedah-muzanni" class="bg-white text-dark w-10 h-10 flex items-center justify-center paper-border shadow-paper-sm transform -rotate-3 hover:rotate-3 transition">
+                        <i class="fab fa-youtube text-xl"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@muzanni.uce" class="bg-white text-dark w-10 h-10 flex items-center justify-center paper-border shadow-paper-sm transform rotate-6 hover:-rotate-6 transition">
+                        <i class="fab fa-tiktok text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="mt-10 pt-6 border-t-2 border-paper/20 flex flex-col md:flex-row justify-between items-center text-sm font-medium">
+                <p>&copy; 2026 Mz Digital</p>
+                <p class="mt-2 md:mt-0">by Muzanni</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Data Tema Basic
+        const basicThemes = [
+            { id: 1, name: "Basic 1", url: "https://invite.truelove.my.id/tema-bassic-1/?to=Nama+Tamu" },
+            { id: 2, name: "Basic 2", url: "https://invite.truelove.my.id/tema-bassic-2/?to=Nama+Tamu" },
+            { id: 3, name: "Basic 3", url: "https://invite.truelove.my.id/tema-bassic-3/?to=Nama+Tamu" },
+            { id: 4, name: "Basic 4", url: "https://invite.truelove.my.id/tema-bassic-4/?to=Nama+Tamu" },
+            { id: 5, name: "Basic 5", url: "https://invite.truelove.my.id/tema-bassic-5/?to=Nama+Tamu" },
+            { id: 6, name: "Basic 6", url: "https://invite.truelove.my.id/tema-bassic-5/?to=Nama+Tamu" }, // Sesuai data awal
+            { id: 7, name: "Basic 7", url: "https://invite.truelove.my.id/tema-bassic-7/?to=Nama+Tamu" },
+            { id: 8, name: "Basic 8", url: "https://invite.truelove.my.id/tema-bassic-8/?to=Nama+Tamu" },
+            { id: 9, name: "Basic 9", url: "https://invite.truelove.my.id/tema-bassic-9/?to=Nama+Tamu" },
+            { id: 10, name: "Basic 10", url: "https://invite.truelove.my.id/tema-bassic-10/?to=Nama+Tamu" },
+            { id: 11, name: "Basic 11", url: "https://invite.truelove.my.id/tema-bassic-11/?to=Nama+Tamu" },
+            { id: 12, name: "Basic 12", url: "https://invite.truelove.my.id/tema-bassic-12/?to=Nama+Tamu" }
+        ];
+
+        // Data Tema 3D Motion
+        const motionThemes = [
+            { id: 1, name: "Motion Islamic 1", url: "https://invite.truelove.my.id/islamic-motion-1/?to=Nama+Tamu" },
+            { id: 2, name: "Motion Islamic 2", url: "https://invite.truelove.my.id/islamic-motion-2/?to=Nama+Tamu" },
+            { id: 3, name: "Motion Islamic 3", url: "https://invite.truelove.my.id/islamic-motion-3/?to=Nama+Tamu" },
+            { id: 4, name: "Motion Islamic 4", url: "https://invite.truelove.my.id/islamic-motion-4/?to=Nama+Tamu" },
+            { id: 5, name: "Motion Islamic 5", url: "https://invite.truelove.my.id/islamic-motion-5/?to=Nama+Tamu" }
+        ];
+
+        // Fungsi Render Kartu bergaya Papercraft Polaroid
+        function renderCard(theme, type, index) {
+            // Rotasi acak sedikit untuk kartu agar terlihat natural seperti ditumpuk
+            const rotations = ['rotate-1', '-rotate-1', 'rotate-2', '-rotate-2', 'rotate-0'];
+            const randomRotation = rotations[index % rotations.length];
+            
+            // Selotip acak
+            const tapes = ['washi-tape', 'washi-tape pink', 'washi-tape green'];
+            const randomTape = tapes[index % tapes.length];
+
+            // Warna placeholder
+            const bgColor = type === 'basic' ? 'D4C3A3' : 'D97757';
+            const textColor = type === 'basic' ? '2D2A26' : 'ffffff';
+            const placeholderImg = `https://placehold.co/600x800/${bgColor}/${textColor}?text=${encodeURIComponent(theme.name)}`;
+            
+            // Badge khusus 3D
+            const badge = type === 'motion' 
+                ? '<div class="absolute -top-3 -right-3 bg-accent text-dark border-2 border-dark shadow-paper-sm text-xs font-bold px-2 py-1 transform rotate-12 z-20"><i class="fas fa-cube mr-1"></i> 3D</div>'
+                : '';
+
+            return `
+                <div class="bg-white p-4 paper-border shadow-paper flex flex-col h-full transform transition duration-300 hover:-translate-y-2 hover:shadow-paper relative ${randomRotation}">
+                    ${badge}
+                    <div class="${randomTape}"></div>
+                    
+                    <!-- Frame Foto Polaroid -->
+                    <div class="bg-gray-100 paper-border-dashed p-1 mb-4 h-64 overflow-hidden relative group cursor-pointer">
+                        <img src="${placeholderImg}" alt="${theme.name}" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-500">
+                        <!-- Overlay Hover -->
+                        <div class="absolute inset-0 bg-dark/40 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center backdrop-blur-sm">
+                            <a href="${theme.url}" target="_blank" rel="noopener noreferrer" class="bg-paper text-dark font-bold px-4 py-2 paper-border shadow-paper-sm transform translate-y-4 group-hover:translate-y-0 transition duration-300">
+                                <i class="fas fa-eye mr-2"></i> Buka Demo
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-col flex-grow text-center">
+                        <h3 class="font-hand text-3xl font-bold text-dark mb-1">${theme.name}</h3>
+                        <p class="text-sm text-gray-600 font-medium mb-4 flex-grow border-b-2 border-dashed border-gray-300 pb-2">Desain Kertas Estetik.</p>
+                        
+                        <div class="flex justify-between items-center mt-auto pt-2">
+                            <button onclick="salinLink('${theme.url}')" class="bg-gray-100 hover:bg-accent text-dark border border-dark p-2 shadow-paper-sm transition transform hover:rotate-6" title="Salin Link">
+                                <i class="fas fa-link"></i>
+                            </button>
+                            <a href="${theme.url}" target="_blank" rel="noopener noreferrer" class="text-sm font-bold text-primary hover:text-dark transition underline decoration-dashed underline-offset-4">
+                                Lihat Penuh <i class="fas fa-arrow-right ml-1 text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Render Basic Themes
+            const basicContainer = document.getElementById('basic-themes-container');
+            basicThemes.forEach((theme, index) => {
+                basicContainer.innerHTML += renderCard(theme, 'basic', index);
+            });
+
+            // Render Motion Themes
+            const motionContainer = document.getElementById('motion-themes-container');
+            motionThemes.forEach((theme, index) => {
+                motionContainer.innerHTML += renderCard(theme, 'motion', index + 3);
+            });
+
+            // Mobile Menu Toggle
+            const btn = document.getElementById('mobile-menu-btn');
+            const menu = document.getElementById('mobile-menu');
+
+            btn.addEventListener('click', () => {
+                menu.classList.toggle('hidden');
+                // Efek animasi simpel
+                if(!menu.classList.contains('hidden')){
+                    menu.classList.add('animate-pulse');
+                    setTimeout(() => menu.classList.remove('animate-pulse'), 300);
+                }
+            });
+
+            // Navbar scroll effect
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 20) {
+                    navbar.classList.add('shadow-paper');
+                    navbar.classList.remove('shadow-paper-sm');
+                } else {
+                    navbar.classList.remove('shadow-paper');
+                    navbar.classList.add('shadow-paper-sm');
+                }
+            });
+        });
+
+        // Nomor WA sesuai permintaan (085251675143 diubah ke format internasional 62)
+        const waNumber = "6285251675143"; 
+        
+        function hubungiWhatsApp() {
+            const text = encodeURIComponent("Halo Mz Digital, saya tertarik dengan undangan digital tema Papercraft. Boleh minta info lebih lanjut?");
+            window.open(`https://wa.me/${waNumber}?text=${text}`, '_blank');
+        }
+
+        function salinLink(url) {
+            // Memisahkan URL dasar untuk menghilangkan parameter ?to=Nama+Tamu saat disalin
+            const baseUrl = url.split('?')[0];
+            
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(baseUrl).then(() => {
+                    tampilkanPesan("Tersalin ke Papan Klip! 📌");
+                }).catch(err => {
+                    fallbackCopyTextToClipboard(baseUrl);
+                });
+            } else {
+                fallbackCopyTextToClipboard(baseUrl);
+            }
+        }
+
+        function fallbackCopyTextToClipboard(text) {
+            var textArea = document.createElement("textarea");
+            textArea.value = text;
+            textArea.style.top = "0";
+            textArea.style.left = "0";
+            textArea.style.position = "fixed";
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+
+            try {
+                var successful = document.execCommand('copy');
+                if(successful) {
+                    tampilkanPesan("Tersalin ke Papan Klip! 📌");
+                } else {
+                    tampilkanPesan("Gagal menyalin link.");
+                }
+            } catch (err) {
+                console.error('Fallback: Oops, unable to copy', err);
+            }
+            document.body.removeChild(textArea);
+        }
+
+        function tampilkanPesan(pesan) {
+            const toast = document.createElement('div');
+            toast.className = 'fixed bottom-5 right-5 bg-accent text-dark font-bold px-6 py-4 paper-border shadow-paper transform transition-transform duration-300 translate-y-32 z-50 flex items-center rotate-2';
+            toast.innerHTML = `<div class="paper-pin" style="left: 10px;"></div> <span class="ml-4">${pesan}</span>`;
+            
+            document.body.appendChild(toast);
+            
+            // Animate in
+            setTimeout(() => {
+                toast.classList.remove('translate-y-32');
+            }, 10);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                toast.classList.add('translate-y-32');
+                setTimeout(() => {
+                    document.body.removeChild(toast);
+                }, 300);
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
